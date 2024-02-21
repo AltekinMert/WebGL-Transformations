@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--Mert Altekin 21050111065-->
+<html>
+<head>
+    <style>
+        label {
+            text-align: right;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="range"] {
+            float: right;
+        }
+
+        #gl-canvas {
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 20px; /* Adjust this value to create space */
+        }
+
+        .slider-container {
+            display: inline-block;
+            vertical-align: top;
+            background-color: #ADD8E6; /* Blue background color */
+            padding: 10px; /* Padding for the container */
+            border-radius: 5px; /* Rounded corners */
+        }
+    </style>
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec4 vPosition;
+uniform mat4 yourMatrixUniform;
+void
+main()
+{
+    gl_Position = yourMatrixUniform * vPosition;
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+uniform vec3 yourColorUniform;
+void
+main()
+{
+    
+    gl_FragColor = vec4(yourColorUniform, 1.0);
+}
+</script>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="Assignment3.js"></script>
+</head>
+
+<body>
+    Mert Altekin<br>
+    Student ID: 21050111065 <br>
+    MV.js MUST be inside of a "Common" file otherwise it does not work.<br> 
+    <div class="canvas-slider-container">
+        <canvas id="gl-canvas" width="512" height="512">
+            Oops ... your browser doesn't support the HTML5 canvas element
+        </canvas>
+        <div class="slider-container">
+            <label>----Transformation----</label><br>
+            <label>Rotation: <input type="range" id="rotationSlider" min="-180" max="180" value="0"></label><br><br>
+            <label>TranslateX: <input type="range" id="translationX" min="-1" max="1" step="0.01" value="0"></label><br>
+            <label>TranslateY: <input type="range" id="translationY" min="-1" max="1" step="0.01" value="0"></label><br><br>
+            <label>ScaleX: <input type="range" id="scaleX" min="0" max="2" step="0.01" value="1"></label><br>
+            <label>ScaleY: <input type="range" id="scaleY" min="0" max="2" step="0.01" value="1"></label><br><br>
+            <label>----Color----
+            </label><br>
+            <label>R: <input type="range" id="colorR" min="0" max="1" step="0.01" value="0"></label><br>
+            <label>G: <input type="range" id="colorG" min="0" max="1" step="0.01" value="0"></label><br>
+            <label>B: <input type="range" id="colorB" min="0" max="1" step="0.01" value="0"></label><br>
+        </div>
+    </div>
+
+</body>
+</html>
